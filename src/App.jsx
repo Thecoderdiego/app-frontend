@@ -1,4 +1,5 @@
 import './App.css'
+import {useState} from 'react'
 import { Note } from './components/Note'
 
 
@@ -24,13 +25,41 @@ const notes = [
 ]
 
 function App() {
+  const [allNotes, setAllNotes] = useState(notes)
+  const [note, setNote] = useState('')
+  console.log(allNotes);
   
+  const handleChangeNote = (e) => {
+    setNote(e.target.value)
+  }
+
+  const handleSubmitAddNote = (e) => {
+    e.preventDefault()
+    const newNote = {
+      id: allNotes.length + 1,
+      content: note,
+      date: new Date().toISOString,
+      important: true
+    }
+
+    setAllNotes([...allNotes, newNote])
+    setNote('')
+  }
+
+
   return (
     <div>
       <h1>Notes</h1>
+
+      <form onSubmit={handleSubmitAddNote}>
+        <input type="text" placeholder='your new note...' value={note} onChange={handleChangeNote}/>
+        <button>Save</button>
+      </form>
+
+
       <ul>
         {
-          notes.map(note => (
+          allNotes.map(note => (
             <Note key={note.id} content={note.content}/>
           ))
         }
