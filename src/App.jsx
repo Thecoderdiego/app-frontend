@@ -27,7 +27,7 @@ const notes = [
 function App() {
   const [allNotes, setAllNotes] = useState(notes)
   const [note, setNote] = useState('')
-  console.log(allNotes);
+  const [showAll, setShowAll] = useState(true)
   
   const handleChangeNote = (e) => {
     setNote(e.target.value)
@@ -46,10 +46,17 @@ function App() {
     setNote('')
   }
 
+  const notesToShow = showAll ? allNotes : allNotes.filter(note => note.important === true)
 
   return (
     <div>
       <h1>Notes</h1>
+
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          Show {showAll ? 'important' : 'all'}
+        </button>
+      </div>
 
       <form onSubmit={handleSubmitAddNote}>
         <input type="text" placeholder='your new note...' value={note} onChange={handleChangeNote}/>
@@ -59,7 +66,7 @@ function App() {
 
       <ul>
         {
-          allNotes.map(note => (
+          notesToShow.map(note => (
             <Note key={note.id} content={note.content}/>
           ))
         }
