@@ -1,5 +1,6 @@
 import './App.css'
-import {useState} from 'react'
+import { Note } from './components/Note'
+
 
 const notes = [
   {
@@ -24,12 +25,17 @@ const notes = [
 
 function App() {
   
-
   return (
-    <>
- 
-
-    </>
+    <div>
+      <h1>Notes</h1>
+      <ul>
+        {
+          notes.map(note => (
+            <Note key={note.id} content={note.content}/>
+          ))
+        }
+      </ul>
+    </div>
   )
 }
 
