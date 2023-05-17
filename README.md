@@ -19,8 +19,8 @@ Continuemos nuestra introducción a React. Primero, veremos cómo representar un
 
 1. Renderizando una colección, módulos
 1. Formularios
-1. Obteniendo datos del servidor
-1. Alterando datos en el servidor
+1. Obteniendo datos del **servidor db.json**
+1. Alterando datos en el servidor 
 1. Agregar estilos a la aplicación React
 
 
