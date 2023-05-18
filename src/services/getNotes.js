@@ -1,8 +1,11 @@
+import axios from "axios"
+
 export const getNotes = () => {
-  return fetch('./src/db.json')
-  .then(res => res.json())
+  return axios.get('./src/db.json')
   .then(response => {
-    const {notes} = response
+    console.log(response);
+    const {notes} = response.data
+    console.log(notes);
     return notes
   })
 }
